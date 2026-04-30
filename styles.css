@@ -34,6 +34,126 @@ body.is-menu-open {
   overflow: hidden;
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  .hero-content .eyebrow,
+  .hero-content h1,
+  .hero-content p,
+  .hero-actions,
+  .hero-metrics,
+  .hero-card,
+  .ticker {
+    animation: fadeUp 0.85s ease both;
+  }
+
+  .hero-content h1 {
+    animation-delay: 0.12s;
+  }
+
+  .hero-content p {
+    animation-delay: 0.22s;
+  }
+
+  .hero-actions {
+    animation-delay: 0.34s;
+  }
+
+  .hero-metrics {
+    animation-delay: 0.46s;
+  }
+
+  .hero-card {
+    animation-delay: 0.58s;
+  }
+
+  .ticker {
+    animation-delay: 0.7s;
+  }
+
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(34px);
+    transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1), transform 0.85s cubic-bezier(0.22, 1, 0.36, 1), clip-path 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  .animate-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-left {
+    transform: translateX(-46px);
+  }
+
+  .reveal-right {
+    transform: translateX(46px);
+  }
+
+  .reveal-zoom {
+    transform: scale(0.94);
+  }
+
+  .reveal-clip {
+    clip-path: none;
+    transform: scale(0.96);
+  }
+
+  .reveal-left.is-visible,
+  .reveal-right.is-visible {
+    transform: translateX(0);
+  }
+
+  .reveal-zoom.is-visible {
+    transform: scale(1);
+  }
+
+  .reveal-clip.is-visible {
+    clip-path: none;
+    transform: scale(1);
+  }
+
+  .hero-metrics span {
+    animation: metricPop 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .hero-metrics span:nth-child(1) {
+    animation-delay: 0.55s;
+  }
+
+  .hero-metrics span:nth-child(2) {
+    animation-delay: 0.68s;
+  }
+
+  .hero-metrics span:nth-child(3) {
+    animation-delay: 0.81s;
+  }
+
+  .service-card,
+  .promise-row article,
+  .expertise-grid article,
+  .steps-row article,
+  .project-collage img,
+  .mini-stats span,
+  .mission-list article {
+    will-change: transform;
+  }
+
+  .banner-about-media video,
+  .banner-about-media img,
+  .logo-card img,
+  .work-visual img,
+  .project-collage img {
+    transition: transform 0.7s ease, filter 0.7s ease;
+  }
+
+  .banner-about-media:hover video,
+  .banner-about-media:hover img,
+  .logo-card:hover img,
+  .work-visual:hover img {
+    transform: scale(1.045);
+  }
+}
+
 img {
   display: block;
   width: 100%;
@@ -1757,6 +1877,94 @@ p {
 
   to {
     transform: translateX(-50%);
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes floatSoft {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes metricPop {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.92);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes slowPan {
+  from {
+    background-position: center top;
+  }
+
+  to {
+    background-position: center 46%;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero {
+    animation: slowPan 18s ease-in-out infinite alternate;
+  }
+
+  .hero-card,
+  .banner-about-badge,
+  .experience,
+  .application-card {
+    animation: floatSoft 5.5s ease-in-out infinite;
+  }
+
+  .btn,
+  .quote-pill,
+  .cta-button,
+  .service-card a {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn::after,
+  .quote-pill::after,
+  .cta-button::after,
+  .service-card a::after {
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 70%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.28), transparent);
+    content: "";
+    transform: skewX(-18deg);
+    transition: left 0.55s ease;
+  }
+
+  .btn:hover::after,
+  .quote-pill:hover::after,
+  .cta-button:hover::after,
+  .service-card a:hover::after {
+    left: 130%;
   }
 }
 

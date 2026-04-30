@@ -48,3 +48,73 @@ workItems.forEach((item) => {
     if (icon) icon.textContent = "−";
   });
 });
+
+const animatedSelectors = [
+  ".banner-about-media",
+  ".banner-about-copy",
+  ".intro-copy",
+  ".logo-card",
+  ".promise-row article",
+  ".center-head",
+  ".service-card",
+  ".dark-grid > div",
+  ".mission-list article",
+  ".global-grid > div",
+  ".map",
+  ".brands h2",
+  ".brand-marquee",
+  ".expertise-grid article",
+  ".section-head",
+  ".steps-row article",
+  ".work-copy",
+  ".work-visual",
+  ".projects .eyebrow",
+  ".projects h2",
+  ".project-collage img",
+  ".quote-copy",
+  ".quote-form",
+  ".bottom-cta .container",
+  ".footer-help",
+  ".footer-grid > div"
+];
+
+const animatedElements = document.querySelectorAll(animatedSelectors.join(","));
+
+animatedElements.forEach((element, index) => {
+  element.classList.add("animate-on-scroll");
+  element.style.setProperty("--reveal-delay", `${Math.min(index % 6, 5) * 80}ms`);
+
+  if (element.matches(".banner-about-media, .logo-card, .map, .work-visual, .project-collage img, .brand-marquee")) {
+    element.classList.add("reveal-zoom");
+    return;
+  }
+
+  if (element.matches(".banner-about-copy, .mission-list article, .quote-form, .footer-grid > div:nth-child(even)")) {
+    element.classList.add("reveal-right");
+    return;
+  }
+
+  if (element.matches(".intro-copy, .dark-grid > div:first-child, .global-grid > div, .work-copy, .quote-copy, .footer-grid > div:nth-child(odd)")) {
+    element.classList.add("reveal-left");
+    return;
+  }
+
+  if (element.matches(".service-card, .promise-row article, .expertise-grid article, .steps-row article")) {
+    element.classList.add("reveal-zoom");
+  }
+});
+
+const revealObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add("is-visible");
+      revealObserver.unobserve(entry.target);
+    });
+  },
+  { threshold: 0.16, rootMargin: "0px 0px -40px 0px" }
+);
+
+animatedElements.forEach((element) => {
+  revealObserver.observe(element);
+});
