@@ -80,6 +80,7 @@ const animatedSelectors = [
 
 const animatedElements = document.querySelectorAll(animatedSelectors.join(","));
 const serviceCards = [...document.querySelectorAll(".service-card")];
+const stepCards = [...document.querySelectorAll(".steps-row article")];
 
 animatedElements.forEach((element, index) => {
   element.classList.add("animate-on-scroll");
@@ -89,6 +90,14 @@ animatedElements.forEach((element, index) => {
     const cardIndex = serviceCards.indexOf(element);
     const revealClasses = ["reveal-left", "reveal-zoom", "reveal-right"];
     element.style.setProperty("--reveal-delay", `${cardIndex * 160}ms`);
+    element.classList.add(revealClasses[cardIndex % revealClasses.length]);
+    return;
+  }
+
+  if (element.matches(".steps-row article")) {
+    const cardIndex = stepCards.indexOf(element);
+    const revealClasses = ["reveal-left", "reveal-zoom", "reveal-right", "reveal-zoom"];
+    element.style.setProperty("--reveal-delay", `${cardIndex * 170}ms`);
     element.classList.add(revealClasses[cardIndex % revealClasses.length]);
     return;
   }
@@ -108,7 +117,7 @@ animatedElements.forEach((element, index) => {
     return;
   }
 
-  if (element.matches(".promise-row article, .expertise-grid article, .steps-row article")) {
+  if (element.matches(".promise-row article, .expertise-grid article")) {
     element.classList.add("reveal-zoom");
   }
 });

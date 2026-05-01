@@ -1447,6 +1447,7 @@ p {
 
 .steps-row article {
   position: relative;
+  overflow: hidden;
   min-height: 245px;
   padding: 74px 26px 28px;
   color: #07111f;
@@ -1454,12 +1455,61 @@ p {
   border: 1px solid rgba(7, 89, 99, 0.12);
   border-radius: 22px;
   box-shadow: 0 18px 42px rgba(9, 17, 31, 0.08);
-  transition: transform 0.22s ease, box-shadow 0.22s ease;
+  transition: transform 0.32s ease, box-shadow 0.32s ease, border-color 0.32s ease;
+}
+
+.steps-row article.animate-on-scroll {
+  transition: opacity 1.25s cubic-bezier(0.16, 1, 0.3, 1), transform 1.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.32s ease, box-shadow 0.32s ease;
+}
+
+.steps-row article.reveal-left {
+  transform: translateX(-90px) translateY(24px) rotate(-1deg);
+}
+
+.steps-row article.reveal-right {
+  transform: translateX(90px) translateY(24px) rotate(1deg);
+}
+
+.steps-row article.reveal-zoom {
+  transform: translateY(64px) scale(0.9);
+}
+
+.steps-row article.reveal-left.is-visible,
+.steps-row article.reveal-right.is-visible,
+.steps-row article.reveal-zoom.is-visible {
+  transform: translateX(0) translateY(0) rotate(0) scale(1);
+}
+
+.steps-row article::before {
+  position: absolute;
+  right: 24px;
+  bottom: 0;
+  left: 24px;
+  height: 4px;
+  background: linear-gradient(90deg, #075963, #f5a623);
+  border-radius: 999px 999px 0 0;
+  content: "";
+  opacity: 0;
+  transform: scaleX(0.2);
+  transform-origin: left;
+  transition: opacity 0.32s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .steps-row article:hover {
-  transform: translateY(-7px);
+  border-color: rgba(7, 89, 99, 0.25);
+  transform: translateY(-9px);
   box-shadow: 0 28px 58px rgba(9, 17, 31, 0.14);
+}
+
+.steps-row article.reveal-left.is-visible:hover,
+.steps-row article.reveal-right.is-visible:hover,
+.steps-row article.reveal-zoom.is-visible:hover {
+  transform: translateY(-9px);
+}
+
+.steps-row article:hover::before {
+  opacity: 1;
+  transform: scaleX(1);
 }
 
 .steps-row article:not(:last-child)::after {
@@ -1482,6 +1532,13 @@ p {
   border-radius: 50%;
   font-weight: 700;
   box-shadow: 0 12px 24px rgba(7, 89, 99, 0.18);
+  transition: transform 0.34s cubic-bezier(0.16, 1, 0.3, 1), background 0.34s ease, box-shadow 0.34s ease;
+}
+
+.steps-row article:hover span {
+  background: #c15f17;
+  box-shadow: 0 16px 28px rgba(193, 95, 23, 0.24);
+  transform: translateY(-4px) scale(1.08);
 }
 
 .steps-row strong {
