@@ -42,7 +42,7 @@ body.is-menu-open {
   .hero-metrics,
   .hero-card,
   .ticker {
-    animation: fadeUp 0.85s ease both;
+    animation: fadeUp 1.05s ease both;
   }
 
   .hero-content h1 {
@@ -71,8 +71,8 @@ body.is-menu-open {
 
   .animate-on-scroll {
     opacity: 0;
-    transform: translateY(34px);
-    transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1), transform 0.85s cubic-bezier(0.22, 1, 0.36, 1), clip-path 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    transform: translateY(52px);
+    transition: opacity 1.35s cubic-bezier(0.22, 1, 0.36, 1), transform 1.35s cubic-bezier(0.22, 1, 0.36, 1), clip-path 1.4s cubic-bezier(0.22, 1, 0.36, 1);
     transition-delay: var(--reveal-delay, 0ms);
   }
 
@@ -82,15 +82,15 @@ body.is-menu-open {
   }
 
   .reveal-left {
-    transform: translateX(-46px);
+    transform: translateX(-86px);
   }
 
   .reveal-right {
-    transform: translateX(46px);
+    transform: translateX(86px);
   }
 
   .reveal-zoom {
-    transform: scale(0.94);
+    transform: translateY(42px) scale(0.9);
   }
 
   .reveal-clip {
@@ -104,7 +104,7 @@ body.is-menu-open {
   }
 
   .reveal-zoom.is-visible {
-    transform: scale(1);
+    transform: translateY(0) scale(1);
   }
 
   .reveal-clip.is-visible {
@@ -113,7 +113,7 @@ body.is-menu-open {
   }
 
   .hero-metrics span {
-    animation: metricPop 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation: metricPop 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
   }
 
   .hero-metrics span:nth-child(1) {
@@ -143,7 +143,7 @@ body.is-menu-open {
   .logo-card img,
   .work-visual img,
   .project-collage img {
-    transition: transform 0.7s ease, filter 0.7s ease;
+    transition: transform 0.9s ease, filter 0.9s ease;
   }
 
   .banner-about-media:hover video,
@@ -834,20 +834,59 @@ p {
   position: relative;
   overflow: hidden;
   display: flex;
-  min-height: 455px;
+  min-height: auto;
   flex-direction: column;
   padding: 0;
   background: #ffffff;
   border: 1px solid rgba(7, 89, 99, 0.12);
   border-radius: 20px;
   box-shadow: 0 18px 42px rgba(9, 17, 31, 0.09);
-  transition: transform 0.24s ease, box-shadow 0.24s ease, border-color 0.24s ease;
+  transition: transform 0.34s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.34s ease, border-color 0.34s ease;
+}
+
+.service-card::before {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.58) 42%, transparent 68%);
+  content: "";
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-120%) skewX(-12deg);
+  transition: opacity 0.32s ease, transform 0.75s ease;
+}
+
+.service-card::after {
+  position: absolute;
+  right: 22px;
+  bottom: 0;
+  left: 22px;
+  z-index: 2;
+  height: 4px;
+  background: linear-gradient(90deg, #075963, #f5a623, #c15f17);
+  border-radius: 999px 999px 0 0;
+  content: "";
+  opacity: 0;
+  transform: scaleX(0.22);
+  transform-origin: left;
+  transition: opacity 0.34s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .service-card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-10px) rotateX(1deg);
   border-color: rgba(7, 89, 99, 0.28);
   box-shadow: 0 28px 60px rgba(9, 17, 31, 0.15);
+}
+
+.service-card:hover::before {
+  opacity: 1;
+  transform: translateX(120%) skewX(-12deg);
+}
+
+.service-card:hover::after {
+  opacity: 1;
+  transform: scaleX(1);
 }
 
 .service-icon {
@@ -866,6 +905,12 @@ p {
   font-size: 14px;
   font-weight: 700;
   box-shadow: 0 12px 24px rgba(193, 95, 23, 0.28);
+  transition: transform 0.34s cubic-bezier(0.22, 1, 0.36, 1), background 0.34s ease;
+}
+
+.service-card:hover .service-icon {
+  background: var(--teal);
+  transform: translateY(-3px) rotate(-8deg) scale(1.08);
 }
 
 .service-card img {
@@ -875,11 +920,12 @@ p {
   width: 100%;
   object-fit: cover;
   border-radius: 0;
-  transition: transform 0.45s ease;
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1), filter 0.8s ease;
 }
 
 .service-card:hover img {
-  transform: scale(1.05);
+  filter: saturate(1.08) contrast(1.04);
+  transform: scale(1.08) translateY(-4px);
 }
 
 .service-card h3,
@@ -899,7 +945,7 @@ p {
 
 .service-card p {
   min-height: auto;
-  margin-bottom: 22px;
+  margin-bottom: 16px;
   color: #52606f;
   font-size: 15px;
   line-height: 1.65;
@@ -908,7 +954,7 @@ p {
 .service-card a {
   display: inline-flex;
   width: fit-content;
-  margin-top: auto;
+  margin-top: 0;
   margin-bottom: 24px;
   padding: 10px 18px;
   color: var(--teal);
@@ -1194,7 +1240,7 @@ p {
   width: max-content;
   align-items: center;
   gap: 18px;
-  animation: logoMarquee 22s linear infinite;
+  animation: logoMarquee 34s linear infinite;
 }
 
 .brand-marquee:hover .brand-strip {
@@ -1807,7 +1853,7 @@ p {
     radial-gradient(circle at 82% 70%, rgba(240, 99, 75, 0.1), transparent 32%),
     linear-gradient(135deg, #fff9e9 0%, #fff7f0 48%, #fbf7ff 100%);
   border-top: 1px solid rgba(255, 184, 46, 0.35);
-  border-bottom: 4px solid #101827;
+  border-bottom: 0;
   border-radius: 0;
   text-align: center;
 }
@@ -1927,14 +1973,14 @@ p {
 
 @media (prefers-reduced-motion: no-preference) {
   .hero {
-    animation: slowPan 18s ease-in-out infinite alternate;
+    animation: slowPan 26s ease-in-out infinite alternate;
   }
 
   .hero-card,
   .banner-about-badge,
   .experience,
   .application-card {
-    animation: floatSoft 5.5s ease-in-out infinite;
+    animation: floatSoft 7.5s ease-in-out infinite;
   }
 
   .btn,
@@ -1978,8 +2024,20 @@ p {
   border-top: 0;
 }
 
+.footer::before {
+  position: absolute;
+  top: -1px;
+  right: 0;
+  left: 0;
+  z-index: 0;
+  height: 2px;
+  background: #ffffff;
+  content: "";
+}
+
 .footer-help {
   position: relative;
+  z-index: 1;
   top: -90px;
   display: flex;
   min-height: 170px;

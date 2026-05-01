@@ -79,10 +79,18 @@ const animatedSelectors = [
 ];
 
 const animatedElements = document.querySelectorAll(animatedSelectors.join(","));
+const serviceCards = [...document.querySelectorAll(".service-card")];
 
 animatedElements.forEach((element, index) => {
   element.classList.add("animate-on-scroll");
-  element.style.setProperty("--reveal-delay", `${Math.min(index % 6, 5) * 80}ms`);
+  element.style.setProperty("--reveal-delay", `${Math.min(index % 6, 5) * 170}ms`);
+
+  if (element.matches(".service-card")) {
+    const cardIndex = serviceCards.indexOf(element);
+    const revealClasses = ["reveal-left", "reveal-zoom", "reveal-right"];
+    element.classList.add(revealClasses[cardIndex % revealClasses.length]);
+    return;
+  }
 
   if (element.matches(".banner-about-media, .logo-card, .map, .work-visual, .project-collage img, .brand-marquee")) {
     element.classList.add("reveal-zoom");
@@ -99,7 +107,7 @@ animatedElements.forEach((element, index) => {
     return;
   }
 
-  if (element.matches(".service-card, .promise-row article, .expertise-grid article, .steps-row article")) {
+  if (element.matches(".promise-row article, .expertise-grid article, .steps-row article")) {
     element.classList.add("reveal-zoom");
   }
 });
