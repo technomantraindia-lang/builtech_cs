@@ -83,11 +83,12 @@ const serviceCards = [...document.querySelectorAll(".service-card")];
 
 animatedElements.forEach((element, index) => {
   element.classList.add("animate-on-scroll");
-  element.style.setProperty("--reveal-delay", `${Math.min(index % 6, 5) * 170}ms`);
+  element.style.setProperty("--reveal-delay", `${Math.min(index % 6, 5) * 210}ms`);
 
   if (element.matches(".service-card")) {
     const cardIndex = serviceCards.indexOf(element);
     const revealClasses = ["reveal-left", "reveal-zoom", "reveal-right"];
+    element.style.setProperty("--reveal-delay", `${cardIndex * 240}ms`);
     element.classList.add(revealClasses[cardIndex % revealClasses.length]);
     return;
   }
