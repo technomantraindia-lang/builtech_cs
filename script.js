@@ -88,7 +88,7 @@ animatedElements.forEach((element, index) => {
   if (element.matches(".service-card")) {
     const cardIndex = serviceCards.indexOf(element);
     const revealClasses = ["reveal-left", "reveal-zoom", "reveal-right"];
-    element.style.setProperty("--reveal-delay", `${cardIndex * 240}ms`);
+    element.style.setProperty("--reveal-delay", `${cardIndex * 160}ms`);
     element.classList.add(revealClasses[cardIndex % revealClasses.length]);
     return;
   }
