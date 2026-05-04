@@ -2294,6 +2294,148 @@ p {
   all: unset;
 }
 
+@media (max-width: 1200px) and (min-width: 921px) {
+  .nav {
+    width: min(100% - 32px, 1120px);
+    min-height: 78px;
+    padding: 0 16px 0 20px;
+  }
+
+  .brand {
+    width: 150px;
+  }
+
+  .brand img {
+    height: 66px;
+  }
+
+  .nav-links {
+    gap: 18px;
+    font-size: 15px;
+  }
+
+  .quote-pill {
+    padding: 11px 18px;
+    font-size: 15px;
+  }
+
+  .hero {
+    min-height: 720px;
+  }
+
+  .hero-content {
+    width: min(100% - 56px, 1080px);
+    padding-top: clamp(92px, 13vh, 128px);
+  }
+
+  .hero-content h1 {
+    max-width: 640px;
+    font-size: clamp(38px, 4vw, 46px);
+  }
+
+  .hero-content p:not(.eyebrow) {
+    max-width: 590px;
+    font-size: 17px;
+  }
+
+  .hero-metrics {
+    width: min(560px, 100%);
+    margin-top: 30px;
+  }
+
+  .hero-metrics span {
+    padding: 16px 18px;
+  }
+
+  .hero-metrics strong {
+    font-size: 28px;
+  }
+
+  .hero-card {
+    right: 28px;
+    bottom: 58px;
+    width: 285px;
+    padding: 20px;
+  }
+
+  .ticker {
+    bottom: 222px;
+    width: min(360px, 38vw);
+  }
+
+  .banner-about-grid,
+  .intro-grid,
+  .dark-grid,
+  .global-grid,
+  .build-grid,
+  .quote-grid {
+    gap: 48px;
+  }
+}
+
+@media (max-width: 1200px) and (min-width: 921px) and (max-height: 760px) {
+  .hero {
+    min-height: 680px;
+  }
+
+  .hero-content {
+    padding-top: 76px;
+  }
+
+  .hero-content h1 {
+    margin-bottom: 16px;
+  }
+
+  .hero-actions {
+    margin-top: 18px;
+  }
+
+  .hero-metrics {
+    margin-top: 22px;
+  }
+
+  .hero-card {
+    bottom: 42px;
+  }
+
+  .ticker {
+    bottom: 195px;
+  }
+}
+
+@media (max-width: 1200px) and (min-width: 641px) and (prefers-reduced-motion: no-preference) {
+  .animate-on-scroll {
+    transform: translateY(34px);
+  }
+
+  .reveal-left {
+    transform: translateX(-42px);
+  }
+
+  .reveal-right {
+    transform: translateX(42px);
+  }
+
+  .reveal-zoom {
+    transform: translateY(28px) scale(0.94);
+  }
+
+  .service-card.reveal-left,
+  .steps-row article.reveal-left {
+    transform: translateX(-56px) rotate(-0.75deg);
+  }
+
+  .service-card.reveal-right,
+  .steps-row article.reveal-right {
+    transform: translateX(56px) rotate(0.75deg);
+  }
+
+  .service-card.reveal-zoom,
+  .steps-row article.reveal-zoom {
+    transform: translateY(46px) scale(0.92);
+  }
+}
+
 @media (max-width: 920px) {
   .hero {
     min-height: 100vh;
@@ -2621,4 +2763,59 @@ h2,
 
 .quote-form {
   font-size: 16px;
+}
+
+/* Keep responsive sizing stronger than the final polish rules above. */
+@media (max-width: 1200px) and (min-width: 921px) {
+  .nav {
+    min-height: 78px;
+  }
+
+  .brand img {
+    height: 66px;
+  }
+
+  .nav-links {
+    font-size: 15px;
+  }
+
+  .quote-pill {
+    padding: 11px 18px;
+    font-size: 15px;
+  }
+
+  .hero-content h1 {
+    font-size: clamp(38px, 4vw, 46px);
+  }
+}
+
+@media (max-width: 920px) {
+  .nav {
+    min-height: 78px;
+  }
+
+  .brand img {
+    height: 62px;
+  }
+
+  .nav-links {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 640px) {
+  h2,
+  .banner-about-copy h2,
+  .center-head h2,
+  .dark-grid h2,
+  .global-grid h2,
+  .work-copy h2,
+  .quote-copy h2,
+  .bottom-cta h2 {
+    font-size: 24px;
+  }
+
+  .hero-content h1 {
+    font-size: 31px;
+  }
 }
